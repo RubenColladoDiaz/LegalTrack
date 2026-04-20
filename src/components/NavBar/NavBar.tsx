@@ -13,8 +13,7 @@ function NavBar() {
         {user && (
           <div className="nav-links">
             <Link to="/">Inicio</Link>
-            <Link to="/Exercici33">Prueba 1</Link>
-            <Link to="/Exercici35">Prueba 2</Link>
+            <Link to="/Account">Cuenta</Link>
           </div>
         )}
       </div>

@@ -1,6 +1,13 @@
-type props = {
-  // hacer type de user y mirar si abogado extends de user en backend
-};
+import { useContext } from "react";
+import { UserContext } from "../../../contexts";
 
-function LeftBar() {}
+function LeftBar() {
+  const userContext = useContext(UserContext);
+  return (
+    <div>
+      {userContext.user?.username}
+      {userContext.user?.email}
+    </div>
+  );
+}
 export default LeftBar;
