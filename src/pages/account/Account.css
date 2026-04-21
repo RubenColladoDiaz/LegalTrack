@@ -1,3 +1,6 @@
 .account {
   display: flex;
 }
+.board {
+  margin-left: 100px;
+}

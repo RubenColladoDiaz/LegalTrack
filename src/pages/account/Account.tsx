@@ -17,6 +17,13 @@ function Account() {
     <UserContext.Provider value={{ user, setUser }}>
       <section className="account">
         <LeftBar />
+        <div className="board">
+          {user ? (
+            <h2>Bienvenido, {user?.username}</h2>
+          ) : (
+            <h2>Hola de nuevo, Usuario</h2>
+          )}
+        </div>
       </section>
     </UserContext.Provider>
   );

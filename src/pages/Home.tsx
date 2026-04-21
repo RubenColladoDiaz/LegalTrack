@@ -2,6 +2,7 @@ import "./Home.css";
 import avatar from "../assets/avatar.png";
 import { useState } from "react";
 import { login } from "../services/authService";
+import { getClientsByLawyerId } from "../services/clientsService";
 
 function Home() {
   const [username, setUsername] = useState("");
@@ -11,6 +12,17 @@ function Home() {
     try {
       const data = await login(username, password);
       localStorage.setItem("user", data);
+      const storedUser = localStorage.getItem("user");
+      //handleClients(storedUser);
+    } catch (error: any) {
+      alert("Error: " + error);
+    }
+  }
+
+  async function handleClients(lawyerId: number) {
+    try {
+      const data = await getClientsByLawyerId(lawyerId);
+      localStorage.setItem("clients", JSON.stringify(data));
     } catch (error: any) {
       alert("Error: " + error);
     }
