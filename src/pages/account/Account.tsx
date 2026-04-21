@@ -3,6 +3,8 @@ import { UserContext } from "../../contexts";
 import type { User } from "../../types/User";
 import LeftBar from "../../components/account-page/LeftBar/LeftBar";
 
+import "./Account.css";
+
 function Account() {
   // We make a funcion instead of a simple localStorage.get
   // because we will need to read de localStorage value more than one time
@@ -13,7 +15,7 @@ function Account() {
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
-      <section>
+      <section className="account">
         <LeftBar />
       </section>
     </UserContext.Provider>
