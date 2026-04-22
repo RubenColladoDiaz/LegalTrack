@@ -3,6 +3,8 @@ import avatar from "../assets/avatar.png";
 import { useState } from "react";
 import { login } from "../services/authService";
 import { getClientsByLawyerId } from "../services/clientsService";
+import type { User } from "../types/User";
+import { getLawyersByAdminId } from "../services/lawyersService";
 
 function Home() {
   const [username, setUsername] = useState("");
@@ -11,9 +13,12 @@ function Home() {
   async function handleLogin() {
     try {
       const data = await login(username, password);
-      localStorage.setItem("user", data);
-      const storedUser = localStorage.getItem("user");
-      //handleClients(storedUser);
+      localStorage.setItem("user", JSON.stringify(data));
+      const storedUser: User = JSON.parse(localStorage.getItem("user") || "{}");
+      handleClients(storedUser?.lawyerId);
+      if (storedUser.role.name === "ADMIN") {
+        handeLawyers(storedUser.id);
+      }
     } catch (error: any) {
       alert("Error: " + error);
     }
@@ -23,6 +28,15 @@ function Home() {
     try {
       const data = await getClientsByLawyerId(lawyerId);
       localStorage.setItem("clients", JSON.stringify(data));
+    } catch (error: any) {
+      alert("Error: " + error);
+    }
+  }
+
+  async function handeLawyers(userId: number) {
+    try {
+      const data = await getLawyersByAdminId(userId);
+      localStorage.setItem("lawyers", JSON.stringify(data));
     } catch (error: any) {
       alert("Error: " + error);
     }

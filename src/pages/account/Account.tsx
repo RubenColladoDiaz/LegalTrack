@@ -4,6 +4,8 @@ import type { User } from "../../types/User";
 import LeftBar from "../../components/account-page/LeftBar/LeftBar";
 
 import "./Account.css";
+import ClientsPanel from "../../components/account-page/ClientsPanel/ClientsPanel";
+import LawyersPanel from "../../components/account-page/LawyersPanel/LawyersPanel";
 
 function Account() {
   // We make a funcion instead of a simple localStorage.get
@@ -23,6 +25,8 @@ function Account() {
           ) : (
             <h2>Hola de nuevo, Usuario</h2>
           )}
+          <ClientsPanel />
+          <LawyersPanel />
         </div>
       </section>
     </UserContext.Provider>
